@@ -73,12 +73,12 @@ app.get('/api/wilders/name/s', (req, res ) => {
     }
   })
 });
-// GET ALL WILDERS BORN BETWEEN 1980 AND 1990
 
 // GET ALL WILDERS ASC BY DATE OF BIRTH
-app.get('/api/wilders/sort', (req, res ) => {
+app.get('/api/wilders/:sort', (req, res ) => {
   connection.query(
-    'SELECT * FROM wilders ORDER BY birthday ASC',
+    `SELECT * FROM wilders ORDER BY name ${req.params.sort}` , 
+    [],
     (err, results) => {
     if(err){
       res.status(500).send('Error retrieving data');
